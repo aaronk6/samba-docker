@@ -20,6 +20,10 @@ RUN chmod +x bootstrap.sh && \
     cd ${workdir} && \
     rm -rf bootstrap.sh samba.tar.gz samba-${samba_version}
 
+ADD init /usr/local/sbin/init
+RUN chmod +x /usr/local/sbin/init
+
+EXPOSE 445/tcp
 VOLUME [ "/mnt/storage", "/usr/local/samba/etc" ]
 
-CMD [ "/usr/local/samba/sbin/smbd", "--log-stdout", "--foreground", "--no-process-group" ]
+CMD [ "/usr/local/sbin/init" ]
