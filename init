@@ -2,7 +2,12 @@
 
 set -euo pipefail
 
-adduser --disabled-password --gecos "" "$USER"
-echo -e "$PASSWORD\n$PASSWORD" | /usr/local/samba/bin/smbpasswd -a -s "$USER"
+MARKER=/var/local/provisioned
+
+if [ ! -f "$MARKER" ]; then
+    adduser --disabled-password --gecos "" "$USER"
+    echo -e "$PASSWORD\n$PASSWORD" | /usr/local/samba/bin/smbpasswd -a -s "$USER"    
+    touch "$MARKER"
+fi
 
 /usr/local/samba/sbin/smbd --log-stdout --foreground --no-process-group
