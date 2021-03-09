@@ -1,6 +1,6 @@
 FROM debian:buster
 
-ENV samba_version=4.13.4
+ENV samba_version=4.13.5
 ENV bootstrap=https://git.samba.org/?p=samba.git;a=blob_plain;f=bootstrap/generated-dists/debian10/bootstrap.sh;hb=v4-13-test
 ENV download_url=https://download.samba.org/pub/samba/stable/samba-${samba_version}.tar.gz
 ENV workdir=/root
